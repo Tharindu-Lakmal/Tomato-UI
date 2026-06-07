@@ -22,11 +22,11 @@ const App = () => {
 
         <Routes>
           <Route path='/Tomato-UI' element={<Home />} />
-          <Route path='/'          element={<Home />} />
-          <Route path='/menu'      element={<Menu />} />
-          <Route path='/cart'      element={<Cart />} />
-          <Route path='/order'     element={<PlaceOrder />} />
-          <Route path='/profile'   element={<Profile setShowLogin={setShowLogin} />} />
+          <Route path='/' element={<Home />} />
+          <Route path='/menu' element={<Menu />} />
+          <Route path='/cart' element={<Cart />} />
+          <Route path='/order' element={<PlaceOrder />} />
+          <Route path='/profile' element={<Profile setShowLogin={setShowLogin} />} />
         </Routes>
       </div>
       <Footer />
