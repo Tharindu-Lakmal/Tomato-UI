@@ -3,25 +3,49 @@ import './FoodDisplay.css'
 import { StoreContext } from '../../context/StoreContext'
 import FoodItem from '../FoodItem/FoodItem'
 
-const FoodDisplay = ({category}) => {
+const FoodDisplay = ({ category }) => {
 
-    const {food_list} = useContext(StoreContext)
+    const { food_list, searchQuery } = useContext(StoreContext);
 
-  return (
-    <div className='food-display' id='food-display'>
-        <h2>Top dishes near you</h2>
-        <div className="food-display-list">
-          {food_list.map((item,index) => {
+    const filteredList = food_list.filter((item) => {
+        const matchesCategory = category === "All" || category === item.category;
+        const matchesSearch = !searchQuery ||
+            item.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            item.category.toLowerCase().includes(searchQuery.toLowerCase());
+        return matchesCategory && matchesSearch;
+    });
 
-            //to filter food items
-            if (category==="All" || category===item.category) {
-              return <FoodItem key={index} id={item.id} name={item.name} description={item.description} price={item.price} image={item.image} />
+    return (
+        <div className='food-display' id='food-display'>
+            <h2>
+                {searchQuery
+                    ? `Search results for "${searchQuery}"`
+                    : 'Top dishes near you'
+                }
+            </h2>
+            {filteredList.length === 0
+                ? (
+                    <div className="food-display-empty">
+                        <p>No dishes found matching your search.</p>
+                    </div>
+                )
+                : (
+                    <div className="food-display-list">
+                        {filteredList.map((item) => (
+                            <FoodItem
+                                key={item._id}
+                                id={item._id}
+                                name={item.name}
+                                description={item.description}
+                                price={item.price}
+                                image={item.image}
+                            />
+                        ))}
+                    </div>
+                )
             }
-              // return <FoodItem key={index} id={item.id} name={item.name} description={item.description} price={item.price} image={item.image} />
-          })}
         </div>
-    </div>
-  )
-}
+    );
+};
 
-export default FoodDisplay
+export default FoodDisplay;

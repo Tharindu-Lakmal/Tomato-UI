@@ -4,25 +4,29 @@ import { Route, Routes } from 'react-router-dom'
 import Home from './pages/Home/Home'
 import Cart from './pages/Cart/Cart'
 import PlaceOrder from './pages/PlaceOrder/PlaceOrder'
+import Menu from './pages/Menu/Menu'
+import Profile from './pages/Profile/Profile'
 import Footer from './components/Footer/Footer'
 import LoginPopup from './components/LoginPopup/LoginPopup'
 
 const App = () => {
 
   // to display login popup
-  const [showLogin,setShowLogin] = useState(false)
+  const [showLogin, setShowLogin] = useState(false)
 
   return (
     <>
-    {/* mount sin in top of the whole content using ternari opareter */}
-    {showLogin?<LoginPopup setShowLogin={setShowLogin} />:<></>}
+      {showLogin ? <LoginPopup setShowLogin={setShowLogin} /> : <></>}
       <div className='app'>
         <Navbar setShowLogin={setShowLogin} />
 
         <Routes>
-          <Route path='/Tomato-UI' element={<Home/>} />
-          <Route path='/cart' element={<Cart/>} />
-          <Route path='/order' element={<PlaceOrder/>} />
+          <Route path='/Tomato-UI' element={<Home />} />
+          <Route path='/'          element={<Home />} />
+          <Route path='/menu'      element={<Menu />} />
+          <Route path='/cart'      element={<Cart />} />
+          <Route path='/order'     element={<PlaceOrder />} />
+          <Route path='/profile'   element={<Profile setShowLogin={setShowLogin} />} />
         </Routes>
       </div>
       <Footer />

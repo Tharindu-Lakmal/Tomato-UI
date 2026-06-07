@@ -2,15 +2,28 @@
 .food-display {
     margin-top: 30px;
 }
+
 .food-display h2 {
-    font-size: max(2vw,24px);
+    font-size: max(2vw, 24px);
     font-weight: 600;
+    color: #49557e;
+    transition: color 0.3s;
 }
 
 .food-display-list {
     display: grid;
-    grid-template-columns: repeat(auto-fill,minmax(240px,1fr));
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
     margin-top: 30px;
     gap: 30px;
     row-gap: 50px;
 }
+
+.food-display-empty {
+    margin-top: 50px;
+    text-align: center;
+    color: #aaa;
+    font-size: 16px;
+    padding: 40px;
+    border: 2px dashed #e8e8e8;
+    border-radius: 12px;
+}
